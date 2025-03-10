@@ -42,9 +42,16 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "rails-controller-testing"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
+
+gem "faraday", "~> 2.12"
+
+gem "daru", "~> 0.3"
+
+gem "matrix", "~> 0.4.2"

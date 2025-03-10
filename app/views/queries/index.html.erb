@@ -1,0 +1,12 @@
+<h1>Queries</h1>
+
+<ul>
+  <% @queries.each do |query| %>
+    <li>
+      <%= link_to "#{query.respondent}, from #{query.start} to #{query.end}",
+      query_path(query) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Query", new_query_path %>

@@ -1,0 +1,31 @@
+<h1 class="mb-3">New Query</h1>
+
+<% if flash[:error] %>
+  <h2>
+    <ul>
+      <% flash[:error].each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </h2>
+<% end %>
+
+<%= form_with model: @query do |form| %>
+  <div class="mb-3">
+    <%= form.label :respondent, "Respondent", class: "form-label" %>
+    <%= form.select :respondent, Query.respondents, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :start, "Start Date YYYY-MM-DD", class: "form-label" %>
+    <%= form.text_field :start, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :end, "End Date YYYY-MM-DD", class: "form-label" %>
+    <%= form.text_field :end, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.submit %>
+  </div>
+<% end %>
