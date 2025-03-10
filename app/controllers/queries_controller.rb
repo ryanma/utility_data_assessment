@@ -21,8 +21,19 @@ class QueriesController < ApplicationController
   end
 
   def create
-    # TODO: create query object from form submission
-    # TODO: query API data from EIA
+    respondent = Query.respondents[params[:respondent]]
+    clean_params[:respondent] = respondent
+    @query = Query.new(clean_params)
+
+    if @query.save
+      # TODO: query API data from EIA
+      # QueryService.new(query: @query).call
+
+      redirect_to query_path(@query)
+    else
+      flash[:error] = @query.errors.full_messages
+      render :new
+    end
   end
 
   def new
@@ -32,6 +43,6 @@ class QueriesController < ApplicationController
   private
 
   def clean_params
-    params.require(:query).permit(:start, :end, :respondent)
+    params.require(:query).permit(:start, :end)
   end
 end
